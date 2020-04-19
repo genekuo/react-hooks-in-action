@@ -23,3 +23,8 @@
 .bookableDetails {
   text-align:left;
 }
+
+button {
+  font-size:120%;
+  border-radius:5px;
+}
