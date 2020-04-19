@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {bookables} from "../db.json";
 
 export default function Bookables () {
-  const group = "Rooms";
+  const [group, setGroup] = useState("Kit");
   const bookablesInGroup = bookables.filter(b => b.group === group);
-  const [ bookableIndex, setBookableIndex ] = useState(0);
+  const [bookableIndex, setBookableIndex] = useState(0);
+  const groups = [...new Set(bookables.map(b => b.group))];
 
   function nextBookable () {
     setBookableIndex(i => (i + 1) % bookablesInGroup.length);
@@ -12,6 +13,13 @@ export default function Bookables () {
 
   return (
     <div>
+      <select
+        value={group}
+        onChange={(e) => setGroup(e.target.value)}
+      >
+        {groups.map(g => <option value={g} key={g}>{g}</option>)}
+      </select>
+
       <ul className="bookables">
         {bookablesInGroup.map((b, i) => (
           <li
