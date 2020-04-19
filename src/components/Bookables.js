@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {bookables} from "../db.json";
 
 export default function Bookables () {
