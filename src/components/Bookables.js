@@ -4,6 +4,7 @@ import {bookables} from "../db.json";
 export default function Bookables () {
   const group = "Rooms";
   const bookablesInGroup = bookables.filter(b => b.group === group);
+
   let bookableIndex = 1;
 
   function changeBookable (selectedIndex) {
