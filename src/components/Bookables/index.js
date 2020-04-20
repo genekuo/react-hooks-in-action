@@ -1,4 +1,4 @@
-import React, {useReducer, useEffect, Fragment} from "react";
+import React, {useReducer, useEffect, useRef, Fragment} from "react";
 import reducer from "./reducer";
 import getData from "../../utils/data-fetcher";
 
@@ -22,6 +22,12 @@ export default function Bookables () {
   const bookable = bookablesInGroup[bookableIndex];
   const groups = [...new Set(bookables.map(b => b.group))];
 
+  const timerRef = useRef(null);
+
+  /**************
+   *  Effects
+   */
+
   useEffect(() => {
     dispatch({type: "FETCH_BOOKABLES_REQUEST"});
 
@@ -36,11 +42,28 @@ export default function Bookables () {
       }));
   }, []);
 
+  useEffect(() => {
+    if (isPresenting) {
+      scheduleNext();
+    } else {
+      clearNextTimeout();
+    }
+  });
+
+  /*********************
+   *  Handler functions
+   */
+
   function changeGroup (event) {
     dispatch({
       type: "SET_GROUP",
       payload: event.target.value
     });
+
+    if (isPresenting) {
+      clearNextTimeout();
+      scheduleNext();
+    }
   }
 
   function changeBookable (selectedIndex) {
@@ -60,6 +83,31 @@ export default function Bookables () {
   function toggleDetails () {
     dispatch({ type: "TOGGLE_HAS_DETAILS" });
   }
+
+  /*********************
+   *  Timer helpers
+   */
+
+  function scheduleNext () {
+    if (timerRef.current === null) {
+      timerRef.current = setTimeout(() => {
+        timerRef.current = null;
+        dispatch({
+          type: "NEXT_BOOKABLE",
+          payload: true
+        });
+      }, 3000);
+    }
+  }
+
+  function clearNextTimeout () {
+    clearTimeout(timerRef.current);
+    timerRef.current = null;
+  }
+
+  /******************
+   * UI
+   */
 
   if (error) {
     return <p>{error.message}</p>
