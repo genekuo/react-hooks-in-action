@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
-import {bookables} from "../db.json";
+import {bookables} from "../../db.json";
 
-export default function Bookables () {
+export default function Index () {
   const [group, setGroup] = useState("Kit");
   const bookablesInGroup = bookables.filter(b => b.group === group);
   const [bookableIndex, setBookableIndex] = useState(0);

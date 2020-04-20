@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Bookables from "./components/Bookables.js";
+import Bookables from "./components/Bookables";
 
 export default function App() {
   return (
