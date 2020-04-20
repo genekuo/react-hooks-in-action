@@ -1,7 +1,11 @@
 import React from "react";
 import "./App.css";
-import UsersList from "./components/UsersList";
+import Bookables from "./components/Bookables";
 
 export default function App() {
-  return <UsersList />
+  return (
+    <div className="App">
+      <Bookables />
+    </div>
+  );
 }
