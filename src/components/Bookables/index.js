@@ -5,38 +5,35 @@ import getData from "../../utils/data-fetcher";
 const initialState = {
   group: "Rooms",
   bookableIndex: 0,
-  hasDetails: true,
   bookables: [],
+  hasDetails: true,
   isLoading: false,
-  error: false
+  error: false,
+  isPresenting: false
 };
 
 export default function Bookables () {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const {group, bookableIndex, bookables} = state;
-  const {hasDetails, isLoading, error} = state;
+  const {hasDetails, isLoading, error, isPresenting} = state;
 
   const bookablesInGroup = bookables.filter(b => b.group === group);
   const bookable = bookablesInGroup[bookableIndex];
   const groups = [...new Set(bookables.map(b => b.group))];
 
   useEffect(() => {
-
     dispatch({type: "FETCH_BOOKABLES_REQUEST"});
 
     getData("http://localhost:3001/bookables")
-
       .then(bookables => dispatch({
         type: "FETCH_BOOKABLES_SUCCESS",
         payload: bookables
       }))
-
       .catch(error => dispatch({
         type: "FETCH_BOOKABLES_ERROR",
         payload: error
       }));
-
   }, []);
 
   function changeGroup (event) {
@@ -54,7 +51,10 @@ export default function Bookables () {
   }
 
   function nextBookable () {
-    dispatch({ type: "NEXT_BOOKABLE" });
+    dispatch({
+      type: "NEXT_BOOKABLE",
+      payload: false
+    });
   }
 
   function toggleDetails () {
