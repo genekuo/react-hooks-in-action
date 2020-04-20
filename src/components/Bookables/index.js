@@ -23,6 +23,7 @@ export default function Bookables () {
   const groups = [...new Set(bookables.map(b => b.group))];
 
   const timerRef = useRef(null);
+  const nextButtonRef = useRef();
 
   /**************
    *  Effects
@@ -71,6 +72,7 @@ export default function Bookables () {
       type: "SET_BOOKABLE",
       payload: selectedIndex
     });
+    nextButtonRef.current.focus();
   }
 
   function nextBookable () {
@@ -136,7 +138,13 @@ export default function Bookables () {
           ))}
         </ul>
         <p>
-          <button onClick={nextBookable} autoFocus>Next</button>
+          <button
+            onClick={nextBookable}
+            ref={nextButtonRef}
+            autoFocus
+          >
+            Next
+          </button>
         </p>
       </div>
 
