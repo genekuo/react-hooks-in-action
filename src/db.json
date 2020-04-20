@@ -36,5 +36,25 @@
       "title": "Wireless mics",
       "notes": "Really handy but don't forget to switch them off when you pop out of the room."
     }
-  ]
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Mark"
+    },
+    {
+      "id": 2,
+      "name": "Simon"
+    },
+    {
+      "id": 3,
+      "name": "Clarisse"
+    },
+    {
+      "id": 4,
+      "name": "Sanjiv"
+    }
+  ],
+  "sessions": [],
+  "bookings": []
 }
