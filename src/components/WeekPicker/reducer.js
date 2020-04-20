@@ -9,7 +9,7 @@ export default function reducer (state, action) {
     case "TODAY":
       return getWeek(new Date());
     case "SET_DATE":
-      return getWeek(action.payload);
+      return getWeek(new Date(action.payload));
     default:
       throw new Error(`Unknown action type: ${action.type}`)
   }
