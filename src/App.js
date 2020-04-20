@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import Bookables from "./components/Bookables";
+import WeekPicker from "./components/WeekPicker";
 
 export default function App() {
   return (
     <div className="App">
-      <Bookables />
+      <WeekPicker date={new Date()} />
     </div>
   );
 }
