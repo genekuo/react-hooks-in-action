@@ -1,11 +1,7 @@
 import React from "react";
 import "./App.css";
-import WeekPicker from "./components/WeekPicker";
+import UsersList from "./components/UsersList";
 
 export default function App() {
-  return (
-    <div className="App">
-      <WeekPicker date={new Date()} />
-    </div>
-  );
+  return <UsersList />
 }
