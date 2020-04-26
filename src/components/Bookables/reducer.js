@@ -40,7 +40,8 @@ export default function reducer (state, action) {
       return {
         ...state,
         isLoading: false,
-        bookables: action.payload
+        bookables: action.payload,
+        isPresenting:true
       };
 
     case "FETCH_BOOKABLES_ERROR":
